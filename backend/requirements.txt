@@ -1,0 +1,24 @@
+# FastAPI and server
+fastapi==0.109.1
+uvicorn==0.27.1
+python-multipart==0.0.9
+
+# AWS SDK and LocalStack
+boto3==1.34.34
+botocore==1.34.34
+localstack==3.0.0
+awscli-local==0.20.0  # Optional: for using aws-cli with LocalStack
+
+# Environment and settings
+python-dotenv==1.0.0
+pydantic==2.6.1
+pydantic-settings==2.1.0
+
+# Testing
+pytest==8.0.1
+pytest-asyncio==0.23.5  # for testing async functions
+httpx==0.26.0  # for testing FastAPI
+
+# Development tools
+black==24.1.1  # code formatting
+flake8==7.0.0  # code linting

@@ -1,0 +1,34 @@
+
+services:
+  backend-app:
+    container_name: backend-app
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - localstack
+    environment:
+      - ENVIRONMENT=local
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - LOCALSTACK_ENDPOINT=http://localstack:4566
+    volumes:
+      - .:/app
+
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=dynamodb,s3
+      - DEBUG=1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
