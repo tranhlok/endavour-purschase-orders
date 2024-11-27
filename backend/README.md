@@ -27,7 +27,7 @@ docker-compose up -d
 source venv/bin/activate
 
 # Run setup script to create the db and all s3
-python scripts/setup_local.py 
+    python scripts/setup_local.py 
 ```
 ### Run the FastAPI server
 
