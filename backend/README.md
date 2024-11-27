@@ -1,4 +1,4 @@
-### How to delete local DynamoDB table and s3 bucket
+### How to delete local DynamoDB table and s3 bucket (if there is existing db and buckets)
 
 ```bash
 # Delete all objects in S3 bucket first (required before deleting bucket)
@@ -14,7 +14,7 @@ aws --endpoint-url=http://localhost:4566 dynamodb delete-table --table-name purc
 ### Start Fresh with a new Docker
 
 ```bash
-# Stop and remove existing containers
+# Stop and remove existing containers (if there is any)
 docker-compose down -v
 
 # Start fresh containers
@@ -22,19 +22,18 @@ docker-compose up -d
 
 # Wait for LocalStack to be ready (about 10-15 seconds)
 
-# Activate the virtual environment
+# Create a new venv from the requirement.txt
+# Activate the virtual environment 
 source venv/bin/activate
 
-# Run setup script
-python scripts/setup_local.py
+# Run setup script to create the db and all s3
+python scripts/setup_local.py 
 ```
-
 ### Run the FastAPI server
 
 ```bash
 uvicorn app.main:app --reload --port 8000 
 ```
-
 
 ### Download a file from S3
 
